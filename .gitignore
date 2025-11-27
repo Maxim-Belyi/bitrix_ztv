@@ -4,3 +4,4 @@ bitrix
 reset.php
 .env
 .idea
+qodana.yaml
