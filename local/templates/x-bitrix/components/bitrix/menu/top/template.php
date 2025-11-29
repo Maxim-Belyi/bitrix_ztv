@@ -35,7 +35,7 @@
                     <?php $previousLevel = $item["DEPTH_LEVEL"]; ?>
                     <?php endforeach ?>
                     <?php if ($previousLevel > 1): ?>
-                        <?= str_repeat("</ul></div>", ($previousLevel - 1)); ?>
+                        <?= str_repeat("</ul></li>", ($previousLevel - 1)); ?>
                     <?php endif ?>
                 </ul>
             </li>

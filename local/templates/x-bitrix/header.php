@@ -21,7 +21,7 @@ IncludeTemplateLangFile(__FILE__);
     <?php
     Asset::getInstance()->addCss(SITE_TEMPLATE_PATH . "/src/css/main.css");
     Asset::getInstance()->addJs(SITE_TEMPLATE_PATH . "/src/js/vendors.js");
-    Asset::getInstance()->addJs(SITE_TEMPLATE_PATH . "/srcdl /js/base.js");
+    Asset::getInstance()->addJs(SITE_TEMPLATE_PATH . "/src/js/base.js");
     ?>
     <title><?php $APPLICATION->ShowTitle() ?></title>
 </head>
@@ -185,7 +185,7 @@ IncludeTemplateLangFile(__FILE__);
                 <div class="mobilemenu__content">
                     <div class="mobilemenu__header">
                         <div class="mobilemenu__burger"></div>
-                        <a class="mobilemenu__logo" href="./">
+                        <a class="mobilemenu__logo" href="/">
                             <svg class="icon icon-img-logo" xmlns="http://www.w3.org/2000/svg"
                                  xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" viewBox="0 0 214 48"
                                  width="214" height="48">
@@ -218,8 +218,13 @@ IncludeTemplateLangFile(__FILE__);
                                 "MENU_CACHE_GET_VARS" => ""
                             ]
                         );
-                      ?>
-                        <a class="mobilemenu__phone" href="tel:8(3513)65-17-11">8 (3513) 65-17-11</a>
+                        ?>
+                        <a class="mobilemenu__phone" href="tel:8(3513)65-17-11"><?php
+                            $APPLICATION->IncludeFile(
+                                SITE_DIR . "include/phone-number.php",
+                                [],
+                                ["MODE" => "html"]
+                            ); ?></a>
                     </div>
                     <div class="mobilemenu__content-right">
                         <div class="mobilemenu__socials"><a class="mobilemenu__socials-item" href="#">
@@ -252,15 +257,24 @@ IncludeTemplateLangFile(__FILE__);
                 </div>
             </div>
             <div class="header__top">
-                <div class="header__offer-news">Предложить новость</div>
-                <a class="header__logo" href="./">
+                <div class="header__offer-news"><?php $APPLICATION->IncludeFile(
+                        SITE_DIR . "include/news-form-btn.php",
+                        [],
+                        ["MODE" => "html"]
+                    ); ?></div>
+                <a class="header__logo" href="/">
                     <svg class="icon icon-img-logo" xmlns="http://www.w3.org/2000/svg"
                          xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" viewBox="0 0 214 48" width="214"
                          height="48">
                         <use xlink:href="#img-logo"></use>
                     </svg>
                 </a>
-                <div class="header__top-right"><a class="header__phone" href="tel:8(3513)65-17-11">8 (3513) 65-17-11</a>
+                <div class="header__top-right"><?php
+                        $APPLICATION->IncludeFile(
+                            SITE_DIR . "include/phone-number.php",
+                            [],
+                            ["MODE" => "html"]
+                        ); ?>
                     <div class="header__search">
                         <svg class="icon icon-img-search" xmlns="http://www.w3.org/2000/svg"
                              xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" viewBox="0 0 18 18" width="18"
