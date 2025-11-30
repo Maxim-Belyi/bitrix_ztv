@@ -1,5 +1,6 @@
 <?php
 
+// use Bitrix\Landing\Controller\User;
 use Bitrix\Main\UserTable;
 
 class UserRepository
@@ -7,7 +8,6 @@ class UserRepository
     public function getUserById(string $userId): ?array
     {
         $user = UserTable::getById($userId)->fetch();
-
         return $user;
     }
 
@@ -16,33 +16,54 @@ class UserRepository
         $user = new CUser();
         $userId = $user->Add($fields);
         if ($userId) {
+            echo "пользователь '$userId' успешно создан";
             return $userId;
-            echo "пользователь $userId\n успешно создан";
         } else {
             print_r($user->LAST_ERROR);
             return false;
         }
     }
 
-    public function GetUserIdByLogin($login) {
-
-      $user = UserTable::getList([
-          'select' => ['ID'],
-          'filter' => ['LOGIN' => $login],
-          'order' => ['ID' => 'DESC'],
-      ]);
-      return $user->fetch();
+    public function deleteUser(string $userId): bool
+    {
+        $user = UserTable::getById($userId)->fetch();
+        $user = new CUser();
+        $user->Delete($userId);
+        if (empty($user->LAST_ERROR)) {
+            print_r($user->LAST_ERROR);
+            return false;
+        }
+        return true;
     }
-    public function updateUserData(string $userId, array $fields): bool
+    public function GetUserIdByLogin($login)
+    {
+        $user = UserTable::getList([
+            'select' => ['ID'],
+            'filter' => ['LOGIN' => $login],
+            'order' => ['ID' => 'DESC'],
+        ]);
+        return $user->fetch();
+    }
+    public function updateUserData(string $userId, ?array $fields): bool
     {
         $user = new CUser();
         $user->Update($userId, $fields);
-        if (!empty ($user->LAST_ERROR)) {
+        if (!empty($user->LAST_ERROR)) {
             print_r($user->LAST_ERROR);
             return false;
         } else {
-            "'$fields' изменено у";
+            "$fields изменено";
             return true;
         }
+    }
+
+    public function getUsersList(): ?array
+    {
+        $usersList = UserTable::getList([
+            'select' => ["ID", "LOGIN", "EMAIL", "NAME", "LAST_NAME", "UF_CAT_NAME"],
+            'filter' => ["ACTIVE" => "Y"],
+            "order" => ["NAME" => "ASC"],
+        ])->fetchALL();
+        return $usersList;
     }
 }

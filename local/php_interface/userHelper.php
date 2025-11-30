@@ -21,7 +21,6 @@ class userHelper
             'order' => $order,
         ]);
         return $result->fetchAll();
-        return [];
     }
     public static function updateByFilter($filter, $newFields):void
     {
@@ -32,7 +31,7 @@ class userHelper
             $result = $userObject->Update($userId, $newFields);
 
             if (!$result) {
-                echo "Что то пошло не так для пользователя $userId: " . $userObject->LAST_ERROR->LAST_ERROR;
+                echo "Что то пошло не так для пользователя $userId: " . $userObject->LAST_ERROR;
             }
         }
     }

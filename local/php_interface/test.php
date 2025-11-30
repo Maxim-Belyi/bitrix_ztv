@@ -42,30 +42,24 @@ $fieldsUser3 = [
 ];
 
 $vasilyiInfo = $UserRepository->GetUserIdByLogin("vasiliypupkin");
-echo "<pre>";
-print_r($vasilyiInfo);
-echo "<pre>";
 
-if(!empty($vasilyiInfo)){
+
+if (!empty($vasilyiInfo)) {
     $fieldsUser1 = [
-        "UF_CAT_NAME" => "Светлана",
+        "UF_CAT_NAME" => "Борис",
+        "NAME" => "Степан",
+        "GROUP_ID" => [1, 5],
     ];
     $UserRepository->updateUserData($vasilyiInfo['ID'], $fieldsUser1);
 }
 
+$user3 = $UserRepository->GetUserIdByLogin('shishkin');
 
-$loginToFind = $fieldsUser1["LOGIN"];
-$userID = $UserRepository->GetUserIdByLogin($loginToFind);
-if ($userID) {
-    $fieldsToUpdate = [
-        "UF_CAT_NAME" => "Светлана"
-    ];
-} else {
-    echo "Пользователь с логином '$loginToFind' не найден";
+if (!empty($user3)) {
+    $UserRepository->deleteUser($user3['ID']);
 }
 
-//$UserRepository->createUser($fieldsUser1);
-
+$users = $UserRepository->getUsersList();
 echo "<pre>";
-print_r($adminInfo);
+print_r($users);
 echo "<pre>";
