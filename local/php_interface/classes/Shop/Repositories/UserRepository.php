@@ -1,5 +1,4 @@
 <?php
-
 // use Bitrix\Landing\Controller\User;
 use Bitrix\Main\UserTable;
 
@@ -16,7 +15,7 @@ class UserRepository
         $user = new CUser();
         $userId = $user->Add($fields);
         if ($userId) {
-            echo "пользователь '$userId' успешно создан";
+            echo "пользователь $userId успешно создан";
             return $userId;
         } else {
             print_r($user->LAST_ERROR);
