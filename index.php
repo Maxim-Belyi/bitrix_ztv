@@ -79,24 +79,52 @@ $vladimir = new CreateUserDTO(
     myBool: true,
 );
 
-
 echo UserHelper::createNewUser(dto: $userDto);
 echo '<br>';
 echo UserHelper::createNewUser(dto: $vladimir);
 
-//сортируем
+//сортируем по имени
 $allUsers = UserHelper::getList(
     [],
     ["NAME" => "ASC"]
 );
-echo "<pre>";
-print_r($allUsers);
-echo "</pre>";
 
+//Обновляем у кого uf_my_bool true
+$filterTask = ['UF_MY_BOOL' => 1];
 
+$fieldTask = [
+    'UF_MY_STRING'=> 'Блогер',
+];
 
+UserHelper::updateByFilter($filterTask, $fieldTask);
+
+//удаляем пользователей у которых число больше заданного
+$fiterTask6 = ['>UF_MY_NUMBER' => 50];
+$fieldTask6 = ['ACTIVE' => 'N'];
+UserHelper::updateByFilter($fiterTask6, $fieldTask6);
+
+//выбирем пользователей с построкой
+$filterTask7 = [
+    'ACTIVE'=> 'Y',
+    '%UF_MY_STRING' => 'тест',
+];
+
+$users = UserHelper::getList($filterTask7);
+
+if (!empty($users)) {
+    echo "Найдено " . count($users);
+} else {
+    echo "С такой подстрокой никого не нашли";
+}
+ 
+//удаляем неактивных (неугодных)
+UserHelper::deleteInactiveUser();
+print "Неактивные пользователи удалены"
+
+// echo "<pre>";
+// print_r($allUsers);
+// echo "</pre>";
 
 ?>
-
 
 <?php require($_SERVER["DOCUMENT_ROOT"] . "/bitrix/footer.php"); ?>

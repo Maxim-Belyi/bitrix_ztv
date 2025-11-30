@@ -29,7 +29,6 @@ class UserHelper
             return "Ошибка: $user->LAST_ERROR";
         }
     }
-
     
     public static function getList($filter = [], $order = ['ID' => 'ASC'])
     {
