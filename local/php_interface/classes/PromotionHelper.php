@@ -31,7 +31,7 @@ class PromotionHelper
             $id = $row['ID'];
             $dateFormatted = '';
             if ($row['DATE_VAL'] instanceof \Bitrix\Main\Type\Date) {
-                $dateFormatted = $row['DATE_VAL']->format('d.m.Y'); // <--- Красивый формат
+                $dateFormatted = $row['DATE_VAL']->format('d.m.Y');
             }
 
             if (!isset($result[$id])) {
@@ -40,12 +40,12 @@ class PromotionHelper
                     'NAME' => $row['NAME'],
                     'DISCOUNT' => (float)$row['DISCOUNT_VAL'],
                     'START_DATE' => $dateFormatted,
-                    'MODIFIED_BY_FIO' => $row['USER_NAME'] . $row['USER_LAST_NAME'],
+                    'MODIFIED_BY_FIO' => $row['USER_NAME'] . ' ' . $row['USER_LAST_NAME'],
                     'CITIES' => []
                 ];
             }
             if (!empty($row['CITY_VAL'])) {
-                $result[$id]['CITIES'] []= $row['CITY_VAL'];
+                $result[$id]['CITIES'][]= $row['CITY_VAL'];
             }
         }
         return array_values($result);
