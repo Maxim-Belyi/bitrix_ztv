@@ -3,6 +3,7 @@ global $APPLICATION;
 require($_SERVER["DOCUMENT_ROOT"] . "/bitrix/header.php");
 require_once($_SERVER["DOCUMENT_ROOT"] . "/local/php_interface/UserHelper.php");
 require_once($_SERVER["DOCUMENT_ROOT"] . "/local/php_interface/CreateUserDTO.php");
+require_once($_SERVER["DOCUMENT_ROOT"] . "/local/php_interface/classes/PromotionHelper.php"); // Путь к классу
 
 $APPLICATION->SetTitle("ZTV");
 ?>
@@ -119,7 +120,22 @@ if (!empty($users)) {
  
 //удаляем неактивных (неугодных)
 UserHelper::deleteInactiveUser();
-print "Неактивные пользователи удалены"
+print "Неактивные пользователи удалены";
+
+echo "<h2>Задание от Артёма</h2>";
+echo "<pre>";
+$promotions = PromotionHelper::getList(['ACTIVE' => 'Y']); 
+echo "</pre>";
+
+echo "<pre>";
+print_r($promotions);
+echo "</pre>";
+
+echo "<h2>Статистика скидок</h2>";
+$stats = PromotionHelper::getDiscountStats();
+echo "Минимальная: " . round($stats['MIN_DISCOUNT']) . "%<br>";
+echo "Максимальная: " . round($stats['MAX_DISCOUNT']) . "%<br>";
+echo "Средняя: " . round($stats['AVG_DISCOUNT'], 1) . "%<br>";
 
 // echo "<pre>";
 // print_r($allUsers);
