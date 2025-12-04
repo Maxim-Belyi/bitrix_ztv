@@ -4,7 +4,7 @@
 $aMenuLinks = [
     [
         "Новости",
-        "news/",
+        "newsMenuList/",
         [],
         [],
         ""
