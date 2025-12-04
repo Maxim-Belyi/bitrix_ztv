@@ -4,7 +4,7 @@
 $aMenuLinks = [
     [
         "Новости",
-        "newsMenuList/",
+        "news/news.php",
         [],
         [],
         ""
