@@ -48,7 +48,7 @@ $APPLICATION->SetTitle("news");
 			0 => "DATE_ACTIVE_FROM",
 			1 => "",
 		),
-		"FILTER_NAME" => "",
+		"FILTER_NAME" => "arrFilter",
 		"FILTER_PROPERTY_CODE" => array(
 			0 => "tags",
 			1 => "",
@@ -106,4 +106,7 @@ $APPLICATION->SetTitle("news");
 		)
 	),
 	false
-);?><?php require($_SERVER["DOCUMENT_ROOT"] . "/bitrix/footer.php"); ?>
+);?>
+Это страница news в корне
+<?php echo "<pre>"; print_r($arResult); echo "</pre>"; ?>
+<?php require($_SERVER["DOCUMENT_ROOT"] . "/bitrix/footer.php"); ?>
