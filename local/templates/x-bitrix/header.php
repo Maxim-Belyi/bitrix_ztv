@@ -26,7 +26,7 @@ IncludeTemplateLangFile(__FILE__);
     <title><?php $APPLICATION->ShowTitle() ?></title>
 </head>
 
-<body class="main" id="body">
+<body class="inner" id="body">
 <?php $APPLICATION->ShowPanel() ?>
 <svg display="none">
     <defs>

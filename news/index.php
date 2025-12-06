@@ -107,6 +107,5 @@ $APPLICATION->SetTitle("news");
 	),
 	false
 );?>
-Это страница news в корне
 <?php echo "<pre>"; print_r($arResult); echo "</pre>"; ?>
 <?php require($_SERVER["DOCUMENT_ROOT"] . "/bitrix/footer.php"); ?>
