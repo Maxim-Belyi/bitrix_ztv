@@ -3,9 +3,9 @@
 	<div class="news-list">
 		<b><?=$arResult["NAME"]?></b>
 		<ul>
-		<?foreach($arResult["ITEMS"] as $arItem):?>
+		<?php foreach($arResult["ITEMS"] as $arItem):?>
 			<li><a href="<?=$arItem["DETAIL_PAGE_URL"]?>"><?=$arItem["NAME"]?></a></li>
-		<?endforeach;?>
+		<?php endforeach;?>
 		</ul>
 	</div>
 <?php endif?>

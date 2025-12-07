@@ -5,11 +5,10 @@ require_once($_SERVER["DOCUMENT_ROOT"] . "/local/php_interface/UserHelper.php");
 require_once($_SERVER["DOCUMENT_ROOT"] . "/local/php_interface/CreateUserDTO.php");
 require_once($_SERVER["DOCUMENT_ROOT"] . "/local/php_interface/classes/PromotionHelper.php"); 
 $sSectionName="news";
-$APPLICATION->SetTitle("news");
 ?><?$APPLICATION->IncludeComponent(
-	"bitrix:news", 
-	"template1", 
-	array(
+	"bitrix:news",
+	"template1",
+	Array(
 		"ADD_ELEMENT_CHAIN" => "N",
 		"ADD_SECTIONS_CHAIN" => "Y",
 		"AJAX_MODE" => "N",
@@ -23,20 +22,15 @@ $APPLICATION->SetTitle("news");
 		"CACHE_TIME" => "36000000",
 		"CACHE_TYPE" => "A",
 		"CHECK_DATES" => "Y",
+		"COMPONENT_TEMPLATE" => "template1",
 		"DETAIL_ACTIVE_DATE_FORMAT" => "d.m.Y",
 		"DETAIL_DISPLAY_BOTTOM_PAGER" => "Y",
 		"DETAIL_DISPLAY_TOP_PAGER" => "N",
-		"DETAIL_FIELD_CODE" => array(
-			0 => "",
-			1 => "",
-		),
+		"DETAIL_FIELD_CODE" => array(0=>"",1=>"",),
 		"DETAIL_PAGER_SHOW_ALL" => "Y",
 		"DETAIL_PAGER_TEMPLATE" => "",
 		"DETAIL_PAGER_TITLE" => "Страница",
-		"DETAIL_PROPERTY_CODE" => array(
-			0 => "tags",
-			1 => "",
-		),
+		"DETAIL_PROPERTY_CODE" => array(0=>"tags",1=>"",),
 		"DETAIL_SET_CANONICAL_URL" => "N",
 		"DISPLAY_BOTTOM_PAGER" => "Y",
 		"DISPLAY_DATE" => "Y",
@@ -44,29 +38,16 @@ $APPLICATION->SetTitle("news");
 		"DISPLAY_PICTURE" => "Y",
 		"DISPLAY_PREVIEW_TEXT" => "Y",
 		"DISPLAY_TOP_PAGER" => "N",
-		"FILTER_FIELD_CODE" => array(
-			0 => "DATE_ACTIVE_FROM",
-			1 => "",
-		),
+		"FILTER_FIELD_CODE" => array(0=>"DATE_ACTIVE_FROM",1=>"",),
 		"FILTER_NAME" => "arrFilter",
-		"FILTER_PROPERTY_CODE" => array(
-			0 => "tags",
-			1 => "",
-			2 => "",
-		),
+		"FILTER_PROPERTY_CODE" => array(0=>"tags",1=>"",2=>"",),
 		"HIDE_LINK_WHEN_NO_DETAIL" => "N",
 		"IBLOCK_ID" => "1",
 		"IBLOCK_TYPE" => "news",
 		"INCLUDE_IBLOCK_INTO_CHAIN" => "Y",
 		"LIST_ACTIVE_DATE_FORMAT" => "d.m.Y",
-		"LIST_FIELD_CODE" => array(
-			0 => "TAGS",
-			1 => "",
-		),
-		"LIST_PROPERTY_CODE" => array(
-			0 => "tags",
-			1 => "",
-		),
+		"LIST_FIELD_CODE" => array(0=>"TAGS",1=>"",),
+		"LIST_PROPERTY_CODE" => array(0=>"tags",1=>"",),
 		"MESSAGE_404" => "",
 		"META_DESCRIPTION" => "-",
 		"META_KEYWORDS" => "-",
@@ -81,9 +62,10 @@ $APPLICATION->SetTitle("news");
 		"PREVIEW_TRUNCATE_LEN" => "",
 		"SEF_FOLDER" => "/news/",
 		"SEF_MODE" => "Y",
+		"SEF_URL_TEMPLATES" => array("news"=>"","section"=>"","detail"=>"#ELEMENT_ID#/","search"=>"search/",),
 		"SET_LAST_MODIFIED" => "N",
 		"SET_STATUS_404" => "N",
-		"SET_TITLE" => "Y",
+		"SET_TITLE" => "N",
 		"SHOW_404" => "N",
 		"SORT_BY1" => "ACTIVE_FROM",
 		"SORT_BY2" => "SORT",
@@ -96,16 +78,6 @@ $APPLICATION->SetTitle("news");
 		"USE_RATING" => "N",
 		"USE_RSS" => "N",
 		"USE_SEARCH" => "Y",
-		"USE_SHARE" => "N",
-		"COMPONENT_TEMPLATE" => "template1",
-		"SEF_URL_TEMPLATES" => array(
-			"news" => "",
-			"section" => "",
-			"detail" => "#ELEMENT_ID#/",
-			"search" => "search/",
-		)
-	),
-	false
-);?>
-<?php echo "<pre>"; print_r($arResult); echo "</pre>"; ?>
-<?php require($_SERVER["DOCUMENT_ROOT"] . "/bitrix/footer.php"); ?>
+		"USE_SHARE" => "N"
+	)
+);?>&nbsp;<?php echo "<pre>"; print_r($arResult); echo "</pre>"; ?><?php require($_SERVER["DOCUMENT_ROOT"] . "/bitrix/footer.php"); ?>

@@ -4,14 +4,14 @@
 $aMenuLinks = [
     [
         "Новости",
-        "news/news.php",
+        "news/index.php",
         [],
         [],
         ""
     ],
     [
         "Телепроекты",
-        "tv_projects/",
+        "tv-projects/index.php",
         [],
         [],
         ""

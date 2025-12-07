@@ -13,10 +13,10 @@ if (!defined("B_PROLOG_INCLUDED") || B_PROLOG_INCLUDED !== true) {
 /** @var string $templateFolder */
 /** @var string $componentPath */
 /** @var CBitrixComponent $component */
-$this->setFrameMode(true);
 
-global $arrFilter;
-$arrFilter = array();
+$APPLICATION->SetTitle("Все новости"); 
+$APPLICATION->SetPageProperty("css_class_section", "all-news");	
+
 
 if ($_GET['filter'] == 'Y') {
 	if (!empty($_GET['date_start'])) {
@@ -28,17 +28,6 @@ if ($_GET['filter'] == 'Y') {
 	}
 }
 ?>
-
-
-<section class="all-news">
-	<div class="wrapper">
-		<h2>Все новости</h2>
-
-		<div class="breadcrumbs">
-			<div class="breadcrumbs-item">Главная</div>
-			<div class="breadcrumbs-item">Новости</div>
-		</div>
-
 		<form action="" method="get" class="all-news__controls fadeInUp">
 			<input type="hidden" name="filter" value="Y">
 
@@ -67,7 +56,6 @@ if ($_GET['filter'] == 'Y') {
 					</div>
 
 					<ul class="select-box__list">
-
 						<?php if (!empty($arResult["TAGS_LIST"])): ?>
 							<?php foreach ($arResult["TAGS_LIST"] as $tag): ?>
 								<li>
@@ -105,7 +93,7 @@ if ($_GET['filter'] == 'Y') {
 			"DETAIL_URL" => $arResult["FOLDER"] . $arResult["URL_TEMPLATES"]["detail"],
 			"SECTION_URL" => $arResult["FOLDER"] . $arResult["URL_TEMPLATES"]["section"],
 			"IBLOCK_URL" => $arResult["FOLDER"] . $arResult["URL_TEMPLATES"]["news"],
-			"SET_TITLE" => $arParams["SET_TITLE"],
+			"SET_TITLE" => "N",
 			"SET_LAST_MODIFIED" => $arParams["SET_LAST_MODIFIED"],
 			"MESSAGE_404" => $arParams["MESSAGE_404"],
 			"SET_STATUS_404" => $arParams["SET_STATUS_404"],
@@ -144,4 +132,3 @@ if ($_GET['filter'] == 'Y') {
 	?>
 
 	</div>
-</section>

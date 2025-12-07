@@ -1,7 +1,10 @@
 <?php if (!defined("B_PROLOG_INCLUDED") || B_PROLOG_INCLUDED !== true) die(); ?>
-<?
+<div?
 IncludeTemplateLangFile(__FILE__);
 ?>
+
+</div>
+</section>
 </main>
 <footer class="footer">
     <div class="wrapper">
@@ -51,6 +54,6 @@ IncludeTemplateLangFile(__FILE__);
     <div id="footer-design"><?=GetMessage("FOOTER_DISIGN")?></div>
     </div>
 </footer>
-</div>
+
 </body>
 </html>

@@ -13,7 +13,7 @@
 $this->setFrameMode(true);
 ?>
 <form name="<?echo $arResult["FILTER_NAME"]."_form"?>" action="<?echo $arResult["FORM_ACTION"]?>" method="get">
-	<?foreach($arResult["ITEMS"] as $arItem):
+	<?php foreach($arResult["ITEMS"] as $arItem):
 		if(array_key_exists("HIDDEN", $arItem)):
 			echo $arItem["INPUT"];
 		endif;
@@ -21,18 +21,18 @@ $this->setFrameMode(true);
 	<table class="data-table" cellspacing="0" cellpadding="2">
 	<thead>
 		<tr>
-			<td colspan="2" align="center"><?=GetMessage("IBLOCK_FILTER_TITLE")?></td>
+			<td><?=GetMessage("IBLOCK_FILTER_TITLE")?></td>
 		</tr>
 	</thead>
 	<tbody>
-		<?foreach($arResult["ITEMS"] as $arItem):?>
-			<?if(!array_key_exists("HIDDEN", $arItem)):?>
+		<?php foreach($arResult["ITEMS"] as $arItem):?>
+			<?php if(!array_key_exists("HIDDEN", $arItem)):?>
 				<tr>
 					<td valign="top"><?=$arItem["NAME"]?>:</td>
 					<td valign="top"><?=$arItem["INPUT"]?></td>
 				</tr>
-			<?endif?>
-		<?endforeach;?>
+			<?php endif?>
+		<?php endforeach;?>
 	</tbody>
 	<tfoot>
 		<tr>
