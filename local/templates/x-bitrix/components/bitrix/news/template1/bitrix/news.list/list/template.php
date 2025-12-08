@@ -1,5 +1,5 @@
 <?php if(!defined("B_PROLOG_INCLUDED") || B_PROLOG_INCLUDED!==true)die();?>
-<?php if(count($arResult["ITEMS"])>0):?>
+<?php if(count($arResult["ITEMS"]) > 0):?>
 	<div class="news-list">
 		<b><?=$arResult["NAME"]?></b>
 		<ul>

@@ -1,4 +1,4 @@
-<!-- <?if(!defined("B_PROLOG_INCLUDED") || B_PROLOG_INCLUDED!==true)die();
+<!-- <!-- <?if(!defined("B_PROLOG_INCLUDED") || B_PROLOG_INCLUDED!==true)die();
 /** @var array $arParams */
 /** @var array $arResult */
 /** @global CMain $APPLICATION */
@@ -42,8 +42,7 @@ $this->setFrameMode(true);
 	<?else:?>
 		<?echo $arResult["PREVIEW_TEXT"];?>
 	<?endif?>
-	<div style="clear:both"></div>
-	<br />
+
 	<?foreach($arResult["FIELDS"] as $code=>$value):
 		if ('PREVIEW_PICTURE' == $code || 'DETAIL_PICTURE' == $code)
 		{
@@ -72,8 +71,7 @@ $this->setFrameMode(true);
 	if(array_key_exists("USE_SHARE", $arParams) && $arParams["USE_SHARE"] == "Y")
 	{
 		?>
-		<div class="news-detail-share">
-			<noindex>
+			<>
 			<?
 			$APPLICATION->IncludeComponent("bitrix:main.share", "", array(
 					"HANDLERS" => $arParams["SHARE_HANDLERS"],
@@ -87,30 +85,23 @@ $this->setFrameMode(true);
 				array("HIDE_ICONS" => "Y")
 			);
 			?>
-			</noindex>
-		</div>
 		<?
 	}
 	?>
-</div> -->
 
 <div class="news-detail-area">
     <h2>это страница template.php</h2>
-    <!-- Картинка новости -->
     <?if($arResult["DETAIL_PICTURE"]["SRC"]):?>
         <div class="news-detail-img">
             <img src="<?=$arResult["DETAIL_PICTURE"]["SRC"]?>" alt="<?=$arResult["NAME"]?>" style="width: 100%;">
         </div>
     <?endif;?>
 
-    <!-- Заголовок и мета-информация -->
     <div class="news-detail-content">
-        <!-- Дата -->
         <span class="date-meta">
             <i class="fa fa-calendar"></i> <?=$arResult["DISPLAY_ACTIVE_FROM"]?>
         </span>
 
-        <!-- Теги (если нужно выводить и внутри новости) -->
         <?if(!empty($arResult["DISPLAY_PROPERTIES"]["tags"]["DISPLAY_VALUE"])):?>
              | <span class="tags-meta">
                 <i class="fa fa-tags"></i>
@@ -124,17 +115,14 @@ $this->setFrameMode(true);
             </span>
         <?endif;?>
 
-        <!-- Заголовок (обычно H1 задается в template.php сайта, но иногда и тут) -->
         <h2><?=$arResult["NAME"]?></h2>
 
-        <!-- Полный текст новости -->
         <div class="news-text">
             <?=$arResult["DETAIL_TEXT"]?>
         </div>
         
-        <!-- Ссылка назад -->
         <br>
         <a href="<?=$arResult["LIST_PAGE_URL"]?>" class="back-link">← Вернуться к списку</a>
 
     </div>
-</div>
+</div> -->

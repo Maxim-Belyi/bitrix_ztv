@@ -13,7 +13,7 @@ for($index = 0; $index < $itemSize; $index++)
 	$title = $arResult[$index]["TITLE"];
 	$link = $arResult[$index]["LINK"];
     
-	if($arResult[$index]["LINK"] <> "" && $index != $itemSize-1)
+	if($arResult[$index]["LINK"] != "" && $index != $itemSize-1)
 	{
 		$strReturn .= '<a href="'.$link.'"class="breadcrumbs-item">' . $title . ' /&nbsp '.'</a>';
 	}

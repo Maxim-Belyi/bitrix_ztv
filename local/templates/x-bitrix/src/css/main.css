@@ -2075,8 +2075,8 @@ body.mobilemenu-opened {
 
 button, input, select, textarea {
     font-family: Frank, sans-serif;
-    /* -webkit-appearance: none;
-    appearance: none */
+    -webkit-appearance: none;
+    appearance: none 
 }
 
 a, h1, h2, h3, h4, h5, ol, ul {
