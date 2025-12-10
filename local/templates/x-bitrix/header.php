@@ -378,8 +378,6 @@ IncludeTemplateLangFile(__FILE__);
             </div>
         </header>
         <main>
-
-
             <section class="<?php $APPLICATION->ShowProperty("css_class_section", "default-section-class"); ?>">
                 <div class="wrapper">
                     <h2><?php $APPLICATION->ShowTitle(false) ?></h2>

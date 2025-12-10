@@ -13,62 +13,71 @@ if (!defined("B_PROLOG_INCLUDED") || B_PROLOG_INCLUDED !== true) {
 /** @var string $templateFolder */
 /** @var string $componentPath */
 /** @var CBitrixComponent $component */
-global $arrFilter;
-$arrFilter = array();
+
+use Bitrix\Main\Context;
+use Local\Repository\TagsRepository;
+use Local\Dto\TagDTO;
+
+$request = Context::getCurrent()->getRequest();
+$tagsCollection = TagsRepository::getTagsCollection((int) $arParams['IBLOCK_ID']);
+
 $APPLICATION->SetTitle("Все новости");
 $APPLICATION->SetPageProperty("css_class_section", "all-news");
 
+global $arrFilter;
+$arrFilter = array();
 
-if ($_GET['filter'] == 'Y') {
-	if (!empty($_GET['date_start'])) {
-		$stmp = MakeTimeStamp($_GET['date_start'], "YYYY-MM-DD");
-		$arrFilter['>=DATE_ACTIVE_FROM'] = date("d.m.Y", $stmp);
+if ($request->get("filter") == "Y") {
+	$dateStart = $request->get('date_start');
+	if (!empty($dateStart)) {
+		$arrFilter['>=DATE_ACTIVE_FROM'] = $dateStart;
 	}
-	if (!empty($_GET['tag_id'])) {
-		$arrFilter['PROPERTY_tags'] = $_GET['tag_id'];
+
+	$tagId = (int) $request->get('tag_id');
+	if ($tagId > 0) {
+		$arrFilter['PROPERTY_tags'] = $tagId;
 	}
-}
-?>
+} ?>
 <form action="" method="get" class="all-news__controls fadeInUp">
 	<input type="hidden" name="filter" value="Y">
 
 	<div class="all-news__controls-date">
 
 		<input class="datepicker-here" type="text" name="date_start" id="news-datepicker" data-range="true"
-			data-toggle-selected="false" placeholder="" value="<?= htmlspecialcharsbx($_GET['date_start']) ?>">
+			data-toggle-selected="false" placeholder="" value="<?= htmlspecialcharsbx($request->get('date_start')) ?>">
 	</div>
 
 	<div class="all-news__controls-rubric">
 		<div class="select-box all-news__controls-rubric-select">
 			<div class="select-box__current" tabindex="1">
 				<div class="select-box__value">
-					<input class="select-box__input" type="radio" id="tag_all" value="" name="tag_id" <?php if (empty($_GET['tag_id']))
-						echo 'checked'; ?>>
+					<input class="select-box__input" type="radio" id="tag_all" value="" name="tag_id"
+						<?= empty($request->get('tag_id')) ? 'checked' : ''; ?>>
 					<p class="select-box__input-text">Все рубрики</p>
 				</div>
 
-				<?php if (!empty($arResult["TAGS_LIST"])): ?>
-					<?php foreach ($arResult["TAGS_LIST"] as $tag): ?>
-						<div class="select-box__value">
-							<input class="select-box__input" type="radio" id="tag_<?= $tag['ID'] ?>" value="<?= $tag['ID'] ?>"
-								name="tag_id" <?php if ($_GET['tag_id'] == $tag['ID'])
-									echo 'checked'; ?>>
-							<p class="select-box__input-text"><?= $tag['VALUE'] ?></p>
-						</div>
-					<?php endforeach; ?>
-				<?php endif; ?>
+				<?php foreach ($tagsCollection as $tag): ?>
+					<div class="select-box__value">
+						<input type="radio" class="select-box__input" id="tag_<?= $tag->getId() ?>"
+							value="tag_<?= $tag->getId() ?>" name="tag_id" <?= ($request->get('tag_id') === $tag->getId()) ? 'checked' : '' ?>>
+						<p class="select-box__input-text"><?= $tag->getName() ?></p>
+					</div>
+				<?php endforeach; ?>
+
 			</div>
 
 			<ul class="select-box__list">
-				<?php if (!empty($arResult["TAGS_LIST"])): ?>
-					<?php foreach ($arResult["TAGS_LIST"] as $tag): ?>
-						<li>
-							<label class="select-box__option" for="tag_<?= $tag['ID'] ?>" aria-hidden>
-								<?= $tag['VALUE'] ?>
-							</label>
-						</li>
-					<?php endforeach; ?>
-				<?php endif; ?>
+				<li>
+					<label class="select-box__option" for="tag_all" aria-hidden>Все рубрики</label>
+				</li>
+
+				<?php foreach ($tagsCollection as $tag): ?>
+					<li>
+						<label class="select-box__option" for="tag_<?= $tag->getId() ?>" aria-hidden>
+							<?= $tag->getName() ?>
+						</label>
+					</li>
+				<?php endforeach; ?>
 			</ul>
 		</div>
 	</div>
@@ -76,7 +85,6 @@ if ($_GET['filter'] == 'Y') {
 	<button type="submit" class="all-news__controls-submit">
 		Показать
 	</button>
-
 </form>
 </div>
 
@@ -133,6 +141,5 @@ $APPLICATION->IncludeComponent(
 	],
 	$component
 );
-?>
 
-</div>
+?>
