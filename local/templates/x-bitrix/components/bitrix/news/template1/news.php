@@ -78,7 +78,7 @@ if ($request->get("filter") == "Y") {
 					</div>
 
 				<?php endforeach; ?>
-				<img class="select-box__icon" src="http://cdn.onlinewebfonts.com/svg/img_295694.svg" alt="Arrow Icon"
+				<img class="select-box__icon" src="http://cdn.onlinewebfonts.com/svg/img_295694.svg" style="width: 20%; opacity: 0;" alt="Arrow Icon"
 					aria-hidden="false" />
 
 			</div>
