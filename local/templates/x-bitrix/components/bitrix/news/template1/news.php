@@ -26,6 +26,20 @@ $APPLICATION->SetPageProperty("css_class_section", "all-news");
 
 global $arrFilter;
 $arrFilter = array();
+?>
+
+<!-- <div style="background: #fff; padding: 20px; border: 1px solid red;">
+	<h3>Отладка:</h3>
+	<?php
+	echo "Количество тегов: " . count($tagsCollection) . "<br>";
+	if (count($tagsCollection) > 0) {
+		echo "Первый тег: " . $tagsCollection[0]->getName() . " (ID: " . $tagsCollection[0]->getId() . ")";
+	} else {
+		echo "<b>Массив тегов пуст</b>";
+	}
+	?>
+</div> -->
+<?php
 
 if ($request->get("filter") == "Y") {
 	$dateStart = $request->get('date_start');
@@ -62,7 +76,10 @@ if ($request->get("filter") == "Y") {
 							value="tag_<?= $tag->getId() ?>" name="tag_id" <?= ($request->get('tag_id') === $tag->getId()) ? 'checked' : '' ?>>
 						<p class="select-box__input-text"><?= $tag->getName() ?></p>
 					</div>
+
 				<?php endforeach; ?>
+				<img class="select-box__icon" src="http://cdn.onlinewebfonts.com/svg/img_295694.svg" alt="Arrow Icon"
+					aria-hidden="false" />
 
 			</div>
 
